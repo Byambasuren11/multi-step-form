@@ -1,11 +1,13 @@
+import Second from "./Second-Page";
 import First from "./First-Page";
 import Left from "./Left-Logo";
 import Right from "./Right-Logo";
+import Third from "./Third-Page";
 
 const Background = () => {
   return(
   <div className="flex flex-col justify-center items-center h-screen w-full bg-gray-200">
-    <div className=" bg-white h-[655px] w-[480px] p-10 rounded-xl flex flex-col gap-6">
+    <div className=" bg-white h-fit w-[480px] p-10 rounded-xl flex flex-col gap-6">
       <div className="flex gap-1">
         <Left />
         <Right />
@@ -18,7 +20,10 @@ const Background = () => {
           Please provide all current information accurately.
         </p>
       </div>
-      <First />
+
+      {/* <First /> */}
+      {/* <Second/> */}
+      <Third/>
     </div>
   </div>
 );}
