@@ -1,6 +1,7 @@
 import { useState } from "react";
 
-const First = () => {
+const First = (props) => {
+  const {setPage}=props;
   const [formValue,setFormValue]=useState({})
   const [error, setError] = useState({});
 
@@ -24,6 +25,9 @@ const First = () => {
       }
       else{
         setError((prev)=>({...prev, userName: "" }));
+      }
+      if(error.userName===""&& error.secondName==="" && error.firstName===""){
+        setPage(2);
       }
   };
   const firstNameChanged = (e) => {

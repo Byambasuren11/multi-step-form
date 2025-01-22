@@ -22,7 +22,7 @@ const Third = (props) => {
     else if(Number (ago[0])<18){
         setError((prev) => ({ ...prev, age: "Enter correct age" }));
     }
-    setPage(4);
+    else{setPage(4);}
     console.log(Number(ago[0]));
   };
   const onClickBack=()=>{

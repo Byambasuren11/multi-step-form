@@ -53,10 +53,14 @@ const Second = (props) => {
       else{
         setError((prev)=>({...prev, confirmPassword: "" }));
       }
-      setPage(3)
+      if(error.email=="" && error.phone=="" && error.password==="" && error.confirmPassword==""){
+        setPage(3)
+      }
 
   };
-
+const  onClickBack=()=>{
+  setPage(1);
+}
   const emailChanged = (e) => {
     setFormValue({...formValue, email: e.target.value});
   };
@@ -125,7 +129,7 @@ const Second = (props) => {
 
       </div>
       <div className="flex gap-3 ">
-      <button className="px-5 py-3.5 bg-white text-black rounded-lg mb-6 w-[200px] border-black border-solid border-1">Back</button>
+      <button className="px-5 py-3.5 bg-white text-black rounded-lg mb-6 w-[200px] border-black border-solid border-1" onClick={onClickBack}>Back</button>
       <button
           className="px-5 py-3.5 bg-black text-white rounded-lg mb-6 w-[200px]"
           onClick={onClick}
