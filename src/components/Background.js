@@ -25,6 +25,8 @@ const Background = () => {
         {page == 1 ? <First setPage={setPage} /> : <></>}
         {page == 2 ? <Second setPage={setPage} /> : <></>}
         {page == 3 ? <Third setPage={setPage} /> : <></>}
+        {page == 4 ? <Final setPage={setPage} /> : <></>}
+        {/* <Third/>  */}
       </div>
     </div>
   );

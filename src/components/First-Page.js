@@ -1,43 +1,50 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const First = (props) => {
-  const {setPage}=props;
-  const [formValue,setFormValue]=useState({})
+  const { setPage } = props;
+  const [formValue, setFormValue] = useState({});
   const [error, setError] = useState({});
 
-
-
   const onClick = () => {
-      if (!formValue.firstName) {
-        setError((prev)=>({...prev, firstName: "Enter first name" }));
-      }
-      else{
-        setError((prev)=>({...prev, firstName: "" }));
-      }
-      if (!formValue.secondName) {
-        setError((prev)=>({...prev, secondName: "Enter second name" }));
-      }
-      else{
-        setError((prev)=>({...prev, secondName: "" }));
-      }
-      if (!formValue.userName) {
-        setError((prev)=>({...prev, userName: "Enter user name" }));
-      }
-      else{
-        setError((prev)=>({...prev, userName: "" }));
-      }
-      if(error.userName===""&& error.secondName==="" && error.firstName===""){
-        setPage(2);
-      }
+    if (!formValue.firstName) {
+      setError((prev) => ({ ...prev, firstName: "Enter first name" }));
+    } else {
+      setError((prev) => ({ ...prev, firstName: "" }));
+    }
+    if (!formValue.secondName) {
+      setError((prev) => ({ ...prev, secondName: "Enter second name" }));
+    } else {
+      setError((prev) => ({ ...prev, secondName: "" }));
+    }
+    if (!formValue.userName) {
+      setError((prev) => ({ ...prev, userName: "Enter user name" }));
+    } else {
+      setError((prev) => ({ ...prev, userName: "" }));
+    }
+    if (
+      error.userName === "" &&
+      error.secondName === "" &&
+      error.firstName === ""
+    ) {
+      setPage(2);
+    }
   };
+
+  useEffect(() => {
+    localStorage.setItem("stepOne", JSON.stringify(formValue));
+  }, [formValue]);
+
+  console.log(JSON.parse(localStorage.getItem("stepOne")));
+
   const firstNameChanged = (e) => {
-    setFormValue({...formValue, firstName: e.target.value});
+    setFormValue({ ...formValue, firstName: e.target.value });
   };
+  // let name = localStorage.getItem("firstName");
   const secondNameChanged = (e) => {
-    setFormValue({...formValue, secondName: e.target.value});
+    setFormValue({ ...formValue, secondName: e.target.value });
   };
   const userNameChanged = (e) => {
-    setFormValue({...formValue, userName: e.target.value});
+    setFormValue({ ...formValue, userName: e.target.value });
   };
   return (
     <>
@@ -51,7 +58,9 @@ const First = (props) => {
           />
           {error.firstName ? (
             <div className="text-red-500">{error.firstName}</div>
-          ):<></>}
+          ) : (
+            <></>
+          )}
         </div>
         <div className=" flex flex-col gap-2">
           <p>Last name</p>
@@ -62,7 +71,9 @@ const First = (props) => {
           />
           {error.secondName ? (
             <div className="text-red-500">{error.secondName}</div>
-          ):<></>}
+          ) : (
+            <></>
+          )}
         </div>
         <div className=" flex flex-col gap-2">
           <p>User name</p>
@@ -73,15 +84,17 @@ const First = (props) => {
           />
           {error.userName ? (
             <div className="text-red-500">{error.userName}</div>
-          ):<></>}
+          ) : (
+            <></>
+          )}
         </div>
       </div>
       <button
-          className="px-5 py-3.5 bg-black text-white rounded-lg mb-10"
-          onClick={onClick}
-        >
-          Continue 1/3
-        </button>
+        className="px-5 py-3.5 bg-black text-white rounded-lg mb-10"
+        onClick={onClick}
+      >
+        Continue 1/3
+      </button>
     </>
   );
 };
