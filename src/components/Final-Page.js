@@ -1,5 +1,6 @@
 const Final = (props) => {
   const {setStep}=props;
+  setStep(4)
   return (
     <>
       <div className="flex flex-col justify-center items-center h-screen w-full bg-gray-200">
