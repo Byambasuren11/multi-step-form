@@ -6,44 +6,46 @@ const First = (props) => {
   const [error, setError] = useState({});
 
   const onClick = () => {
+    console.log(formValue);
+    
     if (!formValue.firstName) {
       setError((prev) => ({ ...prev, firstName: "Enter first name" }));
-    } else {
-      setError((prev) => ({ ...prev, firstName: "" }));
     }
     if (!formValue.secondName) {
       setError((prev) => ({ ...prev, secondName: "Enter second name" }));
-    } else {
-      setError((prev) => ({ ...prev, secondName: "" }));
     }
     if (!formValue.userName) {
       setError((prev) => ({ ...prev, userName: "Enter user name" }));
-    } else {
-      setError((prev) => ({ ...prev, userName: "" }));
     }
+    
+    
     if (
-      error.userName === "" &&
-      error.secondName === "" &&
-      error.firstName === ""
+      !error.userName &&
+      !error.secondName &&
+      !error.firstName 
     ) {
       setPage(2);
+      localStorage.setItem("stepOne", JSON.stringify(formValue));
     }
   };
 
   useEffect(() => {
-    localStorage.setItem("stepOne", JSON.stringify(formValue));
-  }, [formValue]);
-
-  console.log(JSON.parse(localStorage.getItem("stepOne")));
+    const data = localStorage.getItem("stepOne");
+    console.log(JSON.parse(data));
+    setFormValue(JSON.parse(data) || {});
+  }, []);
 
   const firstNameChanged = (e) => {
+    setError((prev) => ({ ...prev, firstName: "" }));
     setFormValue({ ...formValue, firstName: e.target.value });
   };
-  // let name = localStorage.getItem("firstName");
+  
   const secondNameChanged = (e) => {
+    setError((prev) => ({ ...prev, secondName: "" }));
     setFormValue({ ...formValue, secondName: e.target.value });
   };
   const userNameChanged = (e) => {
+    setError((prev) => ({ ...prev, userName: "" }));
     setFormValue({ ...formValue, userName: e.target.value });
   };
   return (
@@ -53,6 +55,7 @@ const First = (props) => {
           <p>First name</p>
           <input
             onChange={firstNameChanged}
+            value={formValue?.firstName || ''}
             className=" w-full p-3 border border-gray-500 rounded-lg"
             placeholder="Your first name"
           />
@@ -66,6 +69,7 @@ const First = (props) => {
           <p>Last name</p>
           <input
             onChange={secondNameChanged}
+            value={formValue?.secondName || ""}
             className="w-full p-3 border border-gray-500 rounded-lg"
             placeholder="Your last name"
           />
@@ -79,6 +83,7 @@ const First = (props) => {
           <p>User name</p>
           <input
             onChange={userNameChanged}
+            value={formValue?.userName || ""}
             className="w-full p-3 border border-gray-500 rounded-lg"
             placeholder="Your username"
           />

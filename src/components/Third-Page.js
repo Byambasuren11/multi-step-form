@@ -1,8 +1,6 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import moment from "moment";
-
 import Product from "./Upload-Image";
-import { Agbalumo } from "next/font/google";
 import Upload from "./uploadPhotoImg";
 
 const Third = (props) => {
@@ -22,6 +20,7 @@ const Third = (props) => {
       setError((prev) => ({ ...prev, age: "Enter correct age" }));
     } else {
       setPage(4);
+      localStorage.setItem("stepThree",JSON.stringify({date :age}) );
     }
     console.log(Number(ago[0]));
   };
@@ -31,7 +30,12 @@ const Third = (props) => {
   const onChange = () => {
     setPicture(true);
   };
-  console.log(picture)
+  
+  useEffect(() => {
+        const data3 = localStorage.getItem("stepThree");
+        setAge(JSON.parse(data3) || {});
+      }, []);
+
   return (
     <>
       <div>
@@ -39,6 +43,7 @@ const Third = (props) => {
         <input
           className="w-full p-3 border border-gray-500 rounded-lg"
           type="date"
+          value={age.date}
           onChange={calculateAge}
         />
         {error.age ? <p className="text-red-500">{error.age}</p> : <></>}
@@ -71,7 +76,7 @@ const Third = (props) => {
           className="px-5 py-3.5 bg-black text-white rounded-lg mb-6 w-[200px]"
           onClick={onClick}
         >
-          Continue 2/3
+          Continue 3/3
         </button>
       </div>
     </>

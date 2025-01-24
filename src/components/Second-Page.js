@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 
 const Second = (props) => {
   const {setPage}=props;
@@ -17,60 +17,53 @@ const Second = (props) => {
       else if(formValue.email.search(emailRegex) === -1){
         setError((prev)=>({...prev, email: "Enter correct email " }));
       }
-      else{
-        setError((prev)=>({...prev,email: "" }));
-      }
-
-
       if (!formValue.phone) {
         setError((prev)=>({...prev, phone: "Enter phone number" }));
       }
       else if(formValue.phone.search(phoneRegex)===-1){
         setError((prev)=>({...prev, phone: "Enter correct phone number" }));
       }
-      else{
-        setError((prev)=>({...prev, phone: "" }));
-      }
-
-
       if (!formValue.password) {
         setError((prev)=>({...prev, password: "Enter password" }));
       }
       else if(formValue.password.search(passwordRegex)==-1){
         setError((prev)=>({...prev, password: "Enter correct password" }));
       }
-      else{
-        setError((prev)=>({...prev, password: "" }));
-      }
-
-
       if (!formValue.confirmPassword) {
         setError((prev)=>({...prev, confirmPassword: "Enter password" }));
       }
       else if(formValue.confirmPassword!==formValue.password){
         setError((prev)=>({...prev, confirmPassword: "Enter correct password" }));
       }
-      else{
-        setError((prev)=>({...prev, confirmPassword: "" }));
-      }
-      if(error.email=="" && error.phone=="" && error.password==="" && error.confirmPassword==""){
+      if(!error.email && !error.phone&& !error.password&& !error.confirmPassword){
         setPage(3)
+        localStorage.setItem("stepTwo", JSON.stringify(formValue));
       }
 
   };
+
+  useEffect(() => {
+      const data1 = localStorage.getItem("stepTwo");
+      setFormValue(JSON.parse(data1) || {});
+    }, []);
+
 const  onClickBack=()=>{
   setPage(1);
 }
   const emailChanged = (e) => {
+    setError((prev)=>({...prev,email: "" }));
     setFormValue({...formValue, email: e.target.value});
   };
   const phoneChanged = (e) => {
+    setError((prev)=>({...prev, phone: "" }));
     setFormValue({...formValue, phone: e.target.value});
   };
   const passwordChanged = (e) => {
+    setError((prev)=>({...prev, password: "" }));
     setFormValue({...formValue, password: e.target.value});
   };
   const confirmPasswordChanged = (e) => {
+    setError((prev)=>({...prev, confirmPassword: "" }));
     setFormValue({...formValue, confirmPassword: e.target.value});
   };
   
@@ -82,6 +75,7 @@ const  onClickBack=()=>{
         <div className=" flex flex-col ">
           <p>Email</p>
           <input
+          value={formValue?.email || ''}
             onChange={emailChanged}
             className=" w-full p-3 border border-gray-500 rounded-lg"
             placeholder="email"
@@ -94,6 +88,7 @@ const  onClickBack=()=>{
         <div className=" flex flex-col gap-2">
           <p>Phone number</p>
           <input
+          value={formValue?.phone || ''}
             onChange={phoneChanged}
             className="w-full p-3 border border-gray-500 rounded-lg"
             placeholder="phone"
@@ -106,6 +101,7 @@ const  onClickBack=()=>{
         <div className=" flex flex-col gap-2">
           <p>Password</p>
           <input
+          value={formValue?.password || ''}
             onChange={passwordChanged}
             className="w-full p-3 border border-gray-500 rounded-lg"
             placeholder="password"
@@ -118,6 +114,7 @@ const  onClickBack=()=>{
         <div className=" flex flex-col gap-2">
           <p>Confirm password</p>
           <input
+          value={formValue?.confirmPassword || ''}
             onChange={confirmPasswordChanged}
             className="w-full p-3 border border-gray-500 rounded-lg"
             placeholder="confirm password"
