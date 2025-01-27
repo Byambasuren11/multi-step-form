@@ -118,6 +118,7 @@ const Second = (props) => {
             <div className=" flex flex-col gap-2">
               <p>Password</p>
               <input
+              type="password"
                 value={formValue?.password || ""}
                 onChange={passwordChanged}
                 className="w-full p-3 border border-gray-500 rounded-lg"
@@ -133,6 +134,7 @@ const Second = (props) => {
             <div className=" flex flex-col gap-2">
               <p>Confirm password</p>
               <input
+              type="password"
                 value={formValue?.confirmPassword || ""}
                 onChange={confirmPasswordChanged}
                 className="w-full p-3 border border-gray-500 rounded-lg"
