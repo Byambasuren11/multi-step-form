@@ -7,7 +7,6 @@ const First = (props) => {
   const [error, setError] = useState({});
 
   const onClick = () => {
-    console.log(formValue);
 
     if (!formValue.firstName) {
       setError((prev) => ({ ...prev, firstName: "Enter first name" }));

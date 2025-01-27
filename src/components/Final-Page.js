@@ -1,6 +1,8 @@
+import Left from "./Left-Logo";
+import Right from "./Right-Logo";
 const Final = (props) => {
-  const {setStep}=props;
-  setStep(4)
+  const {setPage}=props;
+  setPage(4);
   return (
     <>
       <div className="flex flex-col justify-center items-center h-screen w-full bg-gray-200">
