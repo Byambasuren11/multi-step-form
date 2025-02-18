@@ -1,5 +1,7 @@
 import Left from "./Left-Logo";
 import Right from "./Right-Logo";
+
+
 const Final = (props) => {
   const {setPage}=props;
   setPage(4);
