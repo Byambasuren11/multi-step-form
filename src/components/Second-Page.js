@@ -13,32 +13,32 @@ const Second = (props) => {
 
   const onClick = () => {
     if (!formValue.email) {
-      setError((prev) => ({ ...prev, email: "Enter email name" }));
+      setError((prev) => ({ ...prev, email: "Мэйл хаягаа оруулна уу" }));
     } else if (formValue.email.search(emailRegex) === -1) {
-      setError((prev) => ({ ...prev, email: "Enter correct email " }));
+      setError((prev) => ({ ...prev, email: "Зөв мэйл хаяг оруулна уу " }));
     } else {
       setError((prev) => ({ ...prev, email: "" }));
     }
     if (!formValue.phone) {
-      setError((prev) => ({ ...prev, phone: "Enter phone number" }));
+      setError((prev) => ({ ...prev, phone: "Утасны дугаараа оруулна уу." }));
     } else if (formValue.phone.search(phoneRegex) === -1) {
-      setError((prev) => ({ ...prev, phone: "Enter correct phone number" }));
+      setError((prev) => ({ ...prev, phone: "8 оронтой дугаар оруулна уу." }));
     } else {
       setError((prev) => ({ ...prev, phone: "" }));
     }
     if (!formValue.password) {
-      setError((prev) => ({ ...prev, password: "Enter password" }));
+      setError((prev) => ({ ...prev, password: "Нууц үгээ оруулна уу" }));
     } else if (formValue.password.search(passwordRegex) == -1) {
-      setError((prev) => ({ ...prev, password: "Enter correct password" }));
+      setError((prev) => ({ ...prev, password: "Таны нууц үг дор хаяж 1 том үсэг, 1 жижэг үсэг, 1 тусгай тэмдэгт, 8 оронгоос бүрдэх ёстой." }));
     } else {
       setError((prev) => ({ ...prev, password: "" }));
     }
     if (!formValue.confirmPassword) {
-      setError((prev) => ({ ...prev, confirmPassword: "Enter password" }));
+      setError((prev) => ({ ...prev, confirmPassword: "Нууц үгээ давтаж оруулна уу" }));
     } else if (formValue.confirmPassword !== formValue.password) {
       setError((prev) => ({
         ...prev,
-        confirmPassword: "Enter correct password",
+        confirmPassword: "Таны оруулсан нууц үг таарахгүй байна.",
       }));
     } else {
       setError((prev) => ({ ...prev, confirmPassword: "" }));

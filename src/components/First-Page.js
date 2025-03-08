@@ -9,17 +9,17 @@ const First = (props) => {
   const onClick = () => {
 
     if (!formValue.firstName) {
-      setError((prev) => ({ ...prev, firstName: "Enter first name" }));
+      setError((prev) => ({ ...prev, firstName: "Нэрээ оруулна уу" }));
     } else {
       setError((prev) => ({ ...prev, firstName: "" }));
     }
     if (!formValue.secondName) {
-      setError((prev) => ({ ...prev, secondName: "Enter second name" }));
+      setError((prev) => ({ ...prev, secondName: "Овгоо оруулна уу." }));
     } else {
       setError((prev) => ({ ...prev, secondName: "" }));
     }
     if (!formValue.userName) {
-      setError((prev) => ({ ...prev, userName: "Enter user name" }));
+      setError((prev) => ({ ...prev, userName: "Хэрэглэгчийн нэрээ оруулна уу" }));
     } else {
       setError((prev) => ({ ...prev, userName: "" }));
     }
